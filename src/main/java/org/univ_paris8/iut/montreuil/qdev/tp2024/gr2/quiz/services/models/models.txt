@@ -1,0 +1,1 @@
+Conception de l'interface graphique (signature des méthodes).

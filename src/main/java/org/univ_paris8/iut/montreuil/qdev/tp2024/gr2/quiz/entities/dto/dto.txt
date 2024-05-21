@@ -1,0 +1,1 @@
+Objets java qui seront manipulés dans le projet.
