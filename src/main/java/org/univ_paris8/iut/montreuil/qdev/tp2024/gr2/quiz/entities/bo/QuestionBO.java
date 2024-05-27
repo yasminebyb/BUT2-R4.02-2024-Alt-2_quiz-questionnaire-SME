@@ -7,8 +7,6 @@ public class QuestionBO {
     private String langue;
     private String question;
     private String reponse;
-
-
     private int difficulte;
     private String explication;
     private String reference;

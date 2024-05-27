@@ -3,33 +3,33 @@ package org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.dto;
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.enums.LangueEnum;
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.enums.NiveauDifficulteQuestion;
 
+import java.util.Objects;
+
 public class QuestionDTO {
 
-    private int numero;
-    private NiveauDifficulteQuestion difficulte;
-    private String question;
-    private String reponse;
-
+    private int numeroQuestion;
     private LangueEnum langue;
+    private String libelle;
+    private String reponse;
+    private NiveauDifficulteQuestion difficulte;
 
-
-    public QuestionDTO(int numero, NiveauDifficulteQuestion difficulte, String question, String reponse, LangueEnum langue) {
-        this.numero = numero;
+    public QuestionDTO(int numeroQuestion, NiveauDifficulteQuestion difficulte, String libelle, String reponse, LangueEnum langue) {
+        this.numeroQuestion = numeroQuestion;
         this.difficulte = difficulte;
-        this.question = question;
+        this.libelle = libelle;
         this.reponse = reponse;
         this.langue = langue;
     }
 
-    public int getNumero() {
-        return numero;
+    public int getNumeroQuestion() {
+        return numeroQuestion;
     }
     public NiveauDifficulteQuestion getDifficulte() {
         return difficulte;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getLibelle() {
+        return libelle;
     }
 
     public String getReponse() {
@@ -40,16 +40,16 @@ public class QuestionDTO {
         return langue;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setNumeroQuestion(int numeroQuestion) {
+        this.numeroQuestion = numeroQuestion;
     }
 
     public void setDifficulte(NiveauDifficulteQuestion difficulte) {
         this.difficulte = difficulte;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     public void setReponse(String reponse) {
@@ -58,5 +58,18 @@ public class QuestionDTO {
 
     public void setLangue(LangueEnum langue) {
         this.langue = langue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QuestionDTO that = (QuestionDTO) o;
+        return numeroQuestion == that.numeroQuestion && difficulte == that.difficulte && libelle.equals(that.libelle) && reponse.equals(that.reponse) && langue == that.langue;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numeroQuestion, difficulte, libelle, reponse, langue);
     }
 }
