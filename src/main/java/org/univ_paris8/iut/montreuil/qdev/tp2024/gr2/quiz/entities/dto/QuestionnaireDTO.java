@@ -9,12 +9,13 @@ public class QuestionnaireDTO {
     private int idQuestionnaire;
     private List<QuestionDTO> questions;
 
-
+    // Constructeur
     public QuestionnaireDTO(int idQuestionnaire) {
         this.idQuestionnaire = idQuestionnaire;
         this.questions = new ArrayList<>();
     }
 
+    // Getters et Setters
     public int getIdQuestionnaire() {
         return idQuestionnaire;
     }
@@ -31,6 +32,7 @@ public class QuestionnaireDTO {
         this.questions.add(question);
     }
 
+    // equals et hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
