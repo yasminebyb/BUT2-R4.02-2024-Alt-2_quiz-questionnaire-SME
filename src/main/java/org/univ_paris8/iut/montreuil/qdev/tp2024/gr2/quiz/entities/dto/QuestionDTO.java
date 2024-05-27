@@ -12,6 +12,15 @@ public class QuestionDTO {
     private String reponse;
     private NiveauDifficulteQuestionEnum difficulte;
 
+    // Constructeur
+    public QuestionDTO(int numeroQuestion, LangueEnum langue, String libelle, String reponse, NiveauDifficulteQuestionEnum difficulte) {
+        this.numeroQuestion = numeroQuestion;
+        this.langue = langue;
+        this.libelle = libelle;
+        this.reponse = reponse;
+        this.difficulte = difficulte;
+    }
+
     // Getters et Setters
     public int getNumeroQuestion() {
         return numeroQuestion;

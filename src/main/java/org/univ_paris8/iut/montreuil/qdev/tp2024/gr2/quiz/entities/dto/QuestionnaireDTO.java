@@ -7,6 +7,12 @@ public class QuestionnaireDTO {
     private int idQuestionnaire;
     private List<QuestionDTO> questions;
 
+    // Constructeur
+    public QuestionnaireDTO(int idQuestionnaire, List<QuestionDTO> questions) {
+        this.idQuestionnaire = idQuestionnaire;
+        this.questions = questions;
+    }
+
     // Getters et Setters
     public int getIdQuestionnaire() {
         return idQuestionnaire;

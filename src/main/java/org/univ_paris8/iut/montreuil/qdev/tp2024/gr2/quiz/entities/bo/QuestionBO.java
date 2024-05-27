@@ -1,19 +1,28 @@
 package org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.bo;
 
-import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.enums.LangueEnum;
-import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.enums.NiveauDifficulteQuestionEnum;
-
 import java.util.Objects;
 
 public class QuestionBO {
     private int id;
     private int num;
-    private LangueEnum langue;
+    private String langue;
     private String question;
     private String reponse;
-    private NiveauDifficulteQuestionEnum difficulte;
+    private int difficulte;
     private String explication;
     private String reference;
+
+    // Constructeur
+    public QuestionBO(int id, int num, String langue, String question, String reponse, int difficulte, String explication, String reference) {
+        this.id = id;
+        this.num = num;
+        this.langue = langue;
+        this.question = question;
+        this.reponse = reponse;
+        this.difficulte = difficulte;
+        this.explication = explication;
+        this.reference = reference;
+    }
 
     // Getters et Setters
     public int getId() {
@@ -32,11 +41,11 @@ public class QuestionBO {
         this.num = num;
     }
 
-    public LangueEnum getLangue() {
+    public String getLangue() {
         return langue;
     }
 
-    public void setLangue(LangueEnum langue) {
+    public void setLangue(String langue) {
         this.langue = langue;
     }
 
@@ -56,11 +65,11 @@ public class QuestionBO {
         this.reponse = reponse;
     }
 
-    public NiveauDifficulteQuestionEnum getNiveau() {
+    public int getNiveau() {
         return difficulte;
     }
 
-    public void setNiveau(NiveauDifficulteQuestionEnum difficulte) {
+    public void setNiveau(int difficulte) {
         this.difficulte = difficulte;
     }
 
@@ -81,12 +90,13 @@ public class QuestionBO {
     }
 
     // equals et hashCode
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         QuestionBO that = (QuestionBO) o;
-        return id == that.id && num == that.num && langue == that.langue && Objects.equals(question, that.question) && Objects.equals(reponse, that.reponse) && difficulte == that.difficulte && Objects.equals(explication, that.explication) && Objects.equals(reference, that.reference);
+        return id == that.id && num == that.num && difficulte == that.difficulte && Objects.equals(langue, that.langue) && Objects.equals(question, that.question) && Objects.equals(reponse, that.reponse) && Objects.equals(explication, that.explication) && Objects.equals(reference, that.reference);
     }
 
     @Override
