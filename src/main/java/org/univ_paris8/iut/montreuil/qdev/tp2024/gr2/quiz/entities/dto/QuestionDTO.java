@@ -3,6 +3,8 @@ package org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.dto;
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.enums.LangueEnum;
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.enums.NiveauDifficulteQuestion;
 
+import java.util.Objects;
+
 public class QuestionDTO {
 
     private int numero;
@@ -58,5 +60,18 @@ public class QuestionDTO {
 
     public void setLangue(LangueEnum langue) {
         this.langue = langue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QuestionDTO that = (QuestionDTO) o;
+        return numero == that.numero && difficulte == that.difficulte && Objects.equals(question, that.question) && Objects.equals(reponse, that.reponse) && langue == that.langue;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numero, difficulte, question, reponse, langue);
     }
 }
