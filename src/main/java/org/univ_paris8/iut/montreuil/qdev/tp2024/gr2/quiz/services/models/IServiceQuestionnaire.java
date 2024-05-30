@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IServiceQuestionnaire {
 
-    public default List<QuestionnaireDTO> chargerQuestionnaires(String nomfichier) throws ErreurLectureFichierExceptions, ErreurFormatException, ChampVideException {
+    public default List<QuestionnaireDTO> fournirListeQuestionnaires (String nomfichier) throws ChampVideException, ErreurFormatException, ErreurParsingException, FichierIntrouvableException, QuestionnaireNonConformeException {
         return null;
     }
 }

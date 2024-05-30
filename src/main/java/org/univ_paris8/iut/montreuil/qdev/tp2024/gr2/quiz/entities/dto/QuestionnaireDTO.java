@@ -36,7 +36,7 @@ public class QuestionnaireDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         QuestionnaireDTO that = (QuestionnaireDTO) o;
-        return idQuestionnaire == that.idQuestionnaire && Objects.equals(questions, that.questions);
+        return idQuestionnaire == that.idQuestionnaire && questions.equals(that.questions);
     }
 
     @Override
