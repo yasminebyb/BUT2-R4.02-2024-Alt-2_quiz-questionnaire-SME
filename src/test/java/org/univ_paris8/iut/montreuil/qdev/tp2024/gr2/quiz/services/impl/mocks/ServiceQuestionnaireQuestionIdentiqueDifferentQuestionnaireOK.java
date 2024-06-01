@@ -10,19 +10,26 @@ import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.utils.exceptions.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceQuestionnaireUniqueMockOK implements IServiceQuestionnaire {
+public class ServiceQuestionnaireQuestionIdentiqueDifferentQuestionnaireOK implements IServiceQuestionnaire {
 
-    public ServiceQuestionnaireUniqueMockOK() {
+
+    public ServiceQuestionnaireQuestionIdentiqueDifferentQuestionnaireOK() {
     }
 
     @Override
     public List<QuestionnaireDTO> fournirListeQuestionnaires(String nomfichier) throws ChampVideException, ErreurFormatException, ErreurParsingException, FichierIntrouvableException, QuestionnaireNonConformeException {
         List<QuestionnaireDTO> liste = new ArrayList<>();
-        QuestionnaireDTO questionnaire = new QuestionnaireDTO(1);
-        questionnaire.ajouterQuestion(new QuestionDTO(1, NiveauDifficulteQuestionEnum.SIMPLE,"Question1?","Reponse1", LangueEnum.FRANCAIS));
-        questionnaire.ajouterQuestion(new QuestionDTO(2,NiveauDifficulteQuestionEnum.INTERMEDIAIRE,"Question2?","Reponse2", LangueEnum.FRANCAIS));
-        questionnaire.ajouterQuestion(new QuestionDTO(3,NiveauDifficulteQuestionEnum.EXPERT,"Question3?","Reponse3", LangueEnum.FRANCAIS));
-        liste.add(questionnaire);
+
+        // Premier questionnaire
+        QuestionnaireDTO questionnaire1 = new QuestionnaireDTO(1);
+        questionnaire1.ajouterQuestion(new QuestionDTO(1, NiveauDifficulteQuestionEnum.SIMPLE, "Question1?", "Reponse1", LangueEnum.FRANCAIS));
+        liste.add(questionnaire1);
+
+        // Deuxième questionnaire
+        QuestionnaireDTO questionnaire2 = new QuestionnaireDTO(2);
+        questionnaire2.ajouterQuestion(new QuestionDTO(1, NiveauDifficulteQuestionEnum.SIMPLE, "Question1?", "Reponse1", LangueEnum.FRANCAIS));
+        liste.add(questionnaire2);
+
         return liste;
     }
 }

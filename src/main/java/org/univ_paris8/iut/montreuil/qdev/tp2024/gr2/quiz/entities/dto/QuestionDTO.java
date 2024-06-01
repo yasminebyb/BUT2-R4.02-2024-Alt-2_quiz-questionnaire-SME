@@ -1,7 +1,7 @@
 package org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.dto;
 
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.enums.LangueEnum;
-import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.enums.NiveauDifficulteQuestion;
+import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.enums.NiveauDifficulteQuestionEnum;
 
 import java.util.Objects;
 
@@ -11,9 +11,9 @@ public class QuestionDTO {
     private LangueEnum langue;
     private String libelle;
     private String reponse;
-    private NiveauDifficulteQuestion difficulte;
+    private NiveauDifficulteQuestionEnum difficulte;
 
-    public QuestionDTO(int numeroQuestion, NiveauDifficulteQuestion difficulte, String libelle, String reponse, LangueEnum langue) {
+    public QuestionDTO(int numeroQuestion, NiveauDifficulteQuestionEnum difficulte, String libelle, String reponse, LangueEnum langue) {
         this.numeroQuestion = numeroQuestion;
         this.difficulte = difficulte;
         this.libelle = libelle;
@@ -24,7 +24,7 @@ public class QuestionDTO {
     public int getNumeroQuestion() {
         return numeroQuestion;
     }
-    public NiveauDifficulteQuestion getDifficulte() {
+    public NiveauDifficulteQuestionEnum getDifficulte() {
         return difficulte;
     }
 
@@ -44,7 +44,7 @@ public class QuestionDTO {
         this.numeroQuestion = numeroQuestion;
     }
 
-    public void setDifficulte(NiveauDifficulteQuestion difficulte) {
+    public void setDifficulte(NiveauDifficulteQuestionEnum difficulte) {
         this.difficulte = difficulte;
     }
 
