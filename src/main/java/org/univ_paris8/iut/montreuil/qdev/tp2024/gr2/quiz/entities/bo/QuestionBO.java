@@ -14,15 +14,17 @@ public class QuestionBO {
     private String reference;
 
     // Constructeur
-    public QuestionBO(int id, int num, String question, String reponse, int difficulte, String explication, String reference, String langue) {
+
+
+    public QuestionBO(int id, int num, String langue, String question, String reponse, int difficulte, String explication, String reference) {
         this.id = id;
         this.num = num;
+        this.langue = langue;
         this.question = question;
         this.reponse = reponse;
         this.difficulte = difficulte;
         this.explication = explication;
         this.reference = reference;
-        this.langue = langue;
     }
 
     // Getter et Setters
@@ -30,20 +32,48 @@ public class QuestionBO {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getNum() {
         return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public String getLangue() {
+        return langue;
+    }
+
+    public void setLangue(String langue) {
+        this.langue = langue;
     }
 
     public String getQuestion() {
         return question;
     }
 
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     public String getReponse() {
         return reponse;
     }
 
+    public void setReponse(String reponse) {
+        this.reponse = reponse;
+    }
+
     public int getDifficulte() {
         return difficulte;
+    }
+
+    public void setDifficulte(int difficulte) {
+        this.difficulte = difficulte;
     }
 
     public String getExplication() {
@@ -74,5 +104,19 @@ public class QuestionBO {
     @Override
     public int hashCode() {
         return Objects.hash(id, num, langue, question, reponse, difficulte, explication, reference);
+    }
+
+    @Override
+    public String toString() {
+        return "QuestionBO{" +
+                "id=" + id +
+                ", num=" + num +
+                ", langue='" + langue + '\'' +
+                ", question='" + question + '\'' +
+                ", reponse='" + reponse + '\'' +
+                ", difficulte=" + difficulte +
+                ", explication='" + explication + '\'' +
+                ", reference='" + reference + '\'' +
+                '}';
     }
 }
