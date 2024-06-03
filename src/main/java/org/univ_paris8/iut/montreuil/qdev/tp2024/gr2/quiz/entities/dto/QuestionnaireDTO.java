@@ -9,7 +9,6 @@ public class QuestionnaireDTO {
     private int idQuestionnaire;
     private List<QuestionDTO> questions;
 
-
     public QuestionnaireDTO(int idQuestionnaire) {
         this.idQuestionnaire = idQuestionnaire;
         this.questions = new ArrayList<>();

@@ -42,4 +42,16 @@ public class QuestionBO {
     public int getDifficulte() {
         return difficulte;
     }
+
+    public String getLangue() {
+        return langue;
+    }
+
+    public String getExplication() {
+        return explication;
+    }
+
+    public String getReference() {
+        return reference;
+    }
 }
