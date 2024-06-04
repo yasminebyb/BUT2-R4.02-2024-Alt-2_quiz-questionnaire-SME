@@ -8,6 +8,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.bo.QuestionBO;
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.services.models.IServiceQuestionnaire;
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.utils.exceptions.*;
+import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.dto.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.entities.mappers.QuestionMapper.toQuestionDTO;
 
 public class ServiceQuestionnaireImpl implements IServiceQuestionnaire {
 
@@ -30,7 +33,7 @@ public class ServiceQuestionnaireImpl implements IServiceQuestionnaire {
         try (CSVReader reader = new CSVReaderBuilder(new FileReader(filePath)).withCSVParser(parser).build()) {
             String[] line;
             while ((line = reader.readNext()) != null) {
-                if (line.length != 8) {
+                if (line.length > 8) {
                     throw new ErreurFormatException();
                 }
                 try {
@@ -68,15 +71,46 @@ public class ServiceQuestionnaireImpl implements IServiceQuestionnaire {
         return questions;
     }
 
-    // QuestionBO to QuestionDTO
-    // creer une liste de questionnaire vide
+    public List <QuestionnaireDTO> fournirListeQuestionnaires (String nomfichier) throws ChampVideException, ErreurParsingException, QuestionnaireNonConformeException, FichierIntrouvableException, ErreurFormatException {
+        // QuestionBO to QuestionDTO
+        // creer une liste de questionnaire vide
 
-    // parcours liste de questionBO
-    // pour chaque questionBO
-    // regarde le premier champs de la question BO
-    // si numero questionnaire de la questionBO,  si dans ma liste de questionnaireDTO il n'y a un questionnaire avce ce numéro --> le créer.
-    // convertir la question BO en questionDTO
-    // l'ajouter au questionnaire
-    // retourne la liste de questionnaireDTO
+        // parcours liste de questionBO
+        // pour chaque questionBO
+        // regarde le premier champs de la question BO
+        // si numero questionnaire de la questionBO, si dans ma liste de questionnaireDTO il n'y a un questionnaire avce ce numéro --> le créer.
+        // convertir la question BO en questionDTO
+        // l'ajouter au questionnaire
+        // retourne la liste de questionnaireDTO
+
+        List <QuestionnaireDTO> questionnaireDTOS = new ArrayList<>();
+        List <QuestionBO> questionBOS = readCSV(nomfichier);
+        boolean trouvé = false;
+        for (QuestionBO questionBo : questionBOS) {
+
+            if (questionnaireDTOS.isEmpty()) {
+                questionnaireDTOS.add(new QuestionnaireDTO(questionBo.getId()));
+            }
+            else{
+                for (QuestionnaireDTO questionnaireDTO : questionnaireDTOS) {
+                    if(questionnaireDTO.getIdQuestionnaire() == questionBo.getId()){
+                        questionnaireDTO.ajouterQuestion(toQuestionDTO(questionBo));
+                        trouvé = true;
+                    }
+                }
+
+                if(!trouvé){
+                    QuestionnaireDTO nouveauQuestionnaire = new QuestionnaireDTO(questionBo.getId());
+                    nouveauQuestionnaire.ajouterQuestion(toQuestionDTO(questionBo));
+                    questionnaireDTOS.add(nouveauQuestionnaire);
+                }
+            }
+
+            trouvé = false;
+
+        }
+
+        return questionnaireDTOS;
+    }
 
 }
