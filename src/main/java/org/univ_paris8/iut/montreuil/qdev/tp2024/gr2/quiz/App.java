@@ -7,6 +7,7 @@ import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.services.impl.ServiceQ
 import org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.utils.exceptions.*;
 
 import java.net.URL;
+import java.security.Provider;
 import java.util.List;
 
 import static org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.services.impl.ServiceQuestionnaireImpl.readCSV;
@@ -15,10 +16,15 @@ import static org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.services.impl.S
  * Hello world!
  *
  */
-public class App 
+public class App
 {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) throws ChampVideException, ErreurParsingException, QuestionnaireNonConformeException, FichierIntrouvableException, ErreurFormatException {
+        readCSV("questionsQuizz_V16.csv");
+        //ServiceQuestionnaireImpl serviceQuestionnaire = new ServiceQuestionnaireImpl();
+        //serviceQuestionnaire.fournirListeQuestionnaires("questionsQuizz_V4.csv");
+
+
+        /*
         System.out.println( "Hello World!" );
         QuestionBO questionBO = new QuestionBO(1, 10, "fr","Quelle est la capitale de la France?", "Paris", 1, "Paris est la capitale et la plus grande ville de France.", "Wikipedia");
         QuestionDTO questionDTO = QuestionMapper.toQuestionDTO(questionBO);
@@ -50,7 +56,7 @@ public class App
             }
         } catch (ChampVideException | ErreurFormatException | ErreurParsingException | FichierIntrouvableException | QuestionnaireNonConformeException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
     }
 }

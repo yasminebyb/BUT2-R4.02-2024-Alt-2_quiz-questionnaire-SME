@@ -30,10 +30,11 @@ public class ServiceQuestionnaireImpl implements IServiceQuestionnaire {
         // Create a CSVParser with semicolon as the separator
         CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
 
-        try (CSVReader reader = new CSVReaderBuilder(new FileReader(filePath)).withCSVParser(parser).build()) {
+        try (CSVReader reader = new CSVReaderBuilder(new FileReader("src/test/resources/" +filePath)).withCSVParser(parser).build()) {
             String[] line;
             while ((line = reader.readNext()) != null) {
-                if (line.length > 8) {
+                if (line.length != 8) {
+                    System.out.println("Erreur Format Exception");
                     throw new ErreurFormatException();
                 }
                 try {
@@ -84,7 +85,7 @@ public class ServiceQuestionnaireImpl implements IServiceQuestionnaire {
         // retourne la liste de questionnaireDTO
 
         List <QuestionnaireDTO> questionnaireDTOS = new ArrayList<>();
-        List <QuestionBO> questionBOS = readCSV(nomfichier);
+        List <QuestionBO> questionBOS = readCSV( nomfichier);
         boolean trouvé = false;
         for (QuestionBO questionBo : questionBOS) {
 

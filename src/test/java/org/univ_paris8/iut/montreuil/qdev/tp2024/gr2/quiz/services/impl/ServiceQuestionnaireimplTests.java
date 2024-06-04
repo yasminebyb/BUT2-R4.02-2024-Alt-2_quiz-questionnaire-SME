@@ -83,23 +83,24 @@ public class ServiceQuestionnaireimplTests {
     }
 
     // Vérifier qu'un questionnaire lance une exception s'il manque une question
-    //@Test
+    @Test
     public void champQuestionVideTest() {
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireChampVideKO();
 
         assertThrows(ChampVideException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V3");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V3.csv");
         }, "Chargement d'un fichier avec un champ question vide lance ChampVideException");
     }
 
     //Vérifier que la fonction renvoie une exception en cas de fichier d’un autre format.
-    //@Test
+    @Test
     public void formatTxtTest(){
         //serviceQuestionnaireImpl = new ServiceQuestionnaireErreurParsingKO();
 
+        //retourne ErreurFormat
         assertThrows(ErreurParsingException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V4");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V4.prn");
         }, "Chargement d'un fichier texte");
 
     }
@@ -110,77 +111,78 @@ public class ServiceQuestionnaireimplTests {
         //serviceQuestionnaireImpl = new ServiceQuestionnaireFichierIntrouvableKO();
 
         assertThrows(FichierIntrouvableException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V5");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V5.csv");
         }, "Chargement d'un fichier inexistant");
     }
 
-    //@Test
+    @Test
     public void questionEnDoubleTest(){
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireNonConformeKO();
 
         assertThrows(QuestionnaireNonConformeException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V6");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V6.csv");
         }, "Chargement d'un questionnaire ayant deux fois la même question");
     }
 
-    //@Test
+    @Test
     public void fichierVideTest(){
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireChampVideKO();
 
+        //renvoit ErreurFormatException
         assertThrows(ChampVideException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V7");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V7.csv");
         }, "Le fichier est vide");
     }
 
-    //@Test
+    @Test
     public void fichierIdQuestionnaireStringTest(){
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireErreurParsingKO();
 
         assertThrows(ErreurParsingException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V8");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V8.csv");
         }, "Au moins une des données n'est pas du type attendu");
     }
 
-    //@Test
+    @Test
     public void colonnesSupplementairesTest(){
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireErreurFormatKO();
 
         assertThrows(ErreurFormatException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V9");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V9.csv");
         }, "le fichier contient des colonnes supplémentaires");
     }
 
-    //@Test
+    @Test
     public void langueNonReconnueTest(){
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireErreurParsingKO();
 
         assertThrows(ErreurParsingException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V10");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V10.csv");
         }, "le fichier contient un champ pour LangueEnum inconnu");
     }
 
-    //@Test
+    @Test
     public void delimiteurEspaceTest(){
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireErreurParsingKO();
 
         assertThrows(ErreurParsingException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V11");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V11.csv");
         }, "les champs du fichier ne sont pas correctement separes");
     }
 
-    //@Test
+    @Test
     public void plusieursLanguesTest(){
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireNonConformeKO();
 
         assertThrows(QuestionnaireNonConformeException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V12");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V12.csv");
         }, "un questionnaire ne peut pas contenir plusieurs langues");
     }
 
@@ -208,12 +210,12 @@ public class ServiceQuestionnaireimplTests {
 
     }
 
-    //@Test
+    @Test
     public void questionnairesIdentiquesTest(){
         //serviceQuestionnaireImpl = new ServiceQuestionnaireNonConformeKO();
 
         assertThrows(QuestionnaireNonConformeException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V14");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V14.csv");
         }, "le fichier contient plusieurs fois le même questionnaire");
 
     }
@@ -237,45 +239,47 @@ public class ServiceQuestionnaireimplTests {
         }
     }
 
-    //@Test
+    @Test
     public void inverseQuestionReponseTest(){
         //serviceQuestionnaireImpl = new ServiceQuestionnaireNonConformeKO();
 
+        //non géré par le développeur
         assertThrows(QuestionnaireNonConformeException.class, () -> {
             serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V16");
         }, "le fichier a les colonnes questions et reponses inversées");
 
     }
 
-    //@Test
+    @Test
     public void  reponseIncorrecteTest(){
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireNonConformeKO();
 
+        //non géré par le développeur
         assertThrows(QuestionnaireNonConformeException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V17");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V17.csv");
         }, "le fichier répond à une question par une question");
 
     }
 
-    //@Test
+    @Test
     public void memeQuestion2ReponseDifferenteTest(){
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireNonConformeKO();
 
         assertThrows(QuestionnaireNonConformeException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V18");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V18.csv");
         }, "le fichier a deux réponses différentes pour la même question");
 
     }
 
-    //@Test
+    @Test
     public void memeQuestion2ReponseDifferenteDifferentQuestionnaireTest(){
 
         //serviceQuestionnaireImpl = new ServiceQuestionnaireNonConformeKO();
 
         assertThrows(QuestionnaireNonConformeException.class, () -> {
-            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V19");
+            serviceQuestionnaireImpl.fournirListeQuestionnaires("questionsQuizz_V19.csv");
         }, "deux questionnaires ont la même question mais deux réponses différentes");
 
     }
