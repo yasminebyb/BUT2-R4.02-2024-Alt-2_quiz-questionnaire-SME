@@ -39,7 +39,7 @@ public class App
             // Utiliser getResource pour obtenir le chemin du fichier dans les ressources
             URL resource = ServiceQuestionnaireImpl.class.getClassLoader().getResource("questionsQuizz_V1_test.csv");
             if (resource == null) {
-                throw new FichierIntrouvableException("Le fichier spécifié n'existe pas dans les ressources.");
+                throw new FichierIntrouvableException();
             }
 
             String filePath = resource.getPath();

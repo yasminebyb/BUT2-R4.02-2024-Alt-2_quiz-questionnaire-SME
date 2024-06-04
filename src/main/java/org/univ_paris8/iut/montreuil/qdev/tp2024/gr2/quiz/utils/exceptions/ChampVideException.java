@@ -4,7 +4,8 @@ package org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.utils.exceptions;
 
 public class ChampVideException extends Exception{
 
-    public ChampVideException(String message) {
-        super(message);
+    public ChampVideException() {
+
+        super("Un des champs nécessaires pour créer le questionnaire est vide.");
     }
 }

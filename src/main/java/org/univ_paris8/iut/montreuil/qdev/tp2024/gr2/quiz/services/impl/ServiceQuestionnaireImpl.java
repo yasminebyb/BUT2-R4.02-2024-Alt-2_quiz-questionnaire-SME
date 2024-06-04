@@ -31,7 +31,7 @@ public class ServiceQuestionnaireImpl implements IServiceQuestionnaire {
             String[] line;
             while ((line = reader.readNext()) != null) {
                 if (line.length != 8) {
-                    throw new ErreurFormatException("Les champs du fichier ne correspondent pas aux champs attendus.");
+                    throw new ErreurFormatException();
                 }
                 try {
                     int id = Integer.parseInt(line[0]);
@@ -44,11 +44,11 @@ public class ServiceQuestionnaireImpl implements IServiceQuestionnaire {
                     String reference = line[7];
 
                     if (langue.isEmpty() || question.isEmpty() || reponse.isEmpty() || explication.isEmpty() || reference.isEmpty()) {
-                        throw new ChampVideException("Un des champs nécessaires pour créer le questionnaire est vide.");
+                        throw new ChampVideException();
                     }
 
                     if (questionsSet.contains(question)) {
-                        throw new QuestionnaireNonConformeException("Deux questions identiques trouvées dans le questionnaire.");
+                        throw new QuestionnaireNonConformeException();
                     }
 
                     QuestionBO questionBO = new QuestionBO(id, num, langue, question, reponse, difficulte, explication, reference);
@@ -56,12 +56,12 @@ public class ServiceQuestionnaireImpl implements IServiceQuestionnaire {
                     questionsSet.add(question);
 
                 } catch (NumberFormatException e) {
-                    throw new ErreurParsingException("Erreur lors de l'analyse du fichier, format non reconnu ou non supporté.");
+                    throw new ErreurParsingException();
                 }
             }
 
         } catch (FileNotFoundException e) {
-            throw new FichierIntrouvableException("Le fichier spécifié n'existe pas ou le fichier est incorrect.");
+            throw new FichierIntrouvableException();
         } catch (IOException | CsvValidationException e) {
             throw new RuntimeException(e);
         }

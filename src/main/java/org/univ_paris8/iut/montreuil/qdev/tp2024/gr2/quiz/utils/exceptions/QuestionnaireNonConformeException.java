@@ -5,7 +5,7 @@ package org.univ_paris8.iut.montreuil.qdev.tp2024.gr2.quiz.utils.exceptions;
 * */
 public class QuestionnaireNonConformeException extends Exception{
 
-    public QuestionnaireNonConformeException(String message) {
-        super(message);
+    public QuestionnaireNonConformeException() {
+        super("Deux questions identiques trouvées dans le questionnaire.");
     }
 }
